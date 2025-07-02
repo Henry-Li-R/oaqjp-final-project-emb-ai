@@ -8,13 +8,17 @@ summary of the detected emotions. Handles and reports appropriate HTTP and
 application-level errors.
 """
 
-from flask import Flask, request
+from flask import Flask, request, render_template
 import requests
 from EmotionDetection.emotion_detection import emotion_detector
 
 app = Flask(__name__)
 
-@app.route("/emotionDetector", methods=["GET"])
+@app.route("/")
+def home_page():
+    return render_template("index.html")
+
+@app.route("/emotionDetector")
 def do_emotion_detection():
     """
     Handle GET requests for emotion detection on input text.
